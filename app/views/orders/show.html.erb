@@ -1,0 +1,40 @@
+<% provide(:title, 'Order details') %>
+
+<h1>Listing Order</h1>
+
+<h2>Order number: <%= @order.id %></h2>
+
+<h3> To be delivered:  <%= @order.requested_delivery_date %></h3>
+
+<% if !@cookie_orders.nil? %>
+  <table class="table table-striped">
+   <thead>
+      <tr>
+      </tr>
+      <tr>
+        <th align="left"> Name </th>
+        <th> Pallets </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @cookie_orders.each do |o| %>
+      <tr>
+        <td><%= (@cookies.find_by id: o.cookie_id).name %></td>
+        <td align="center"><%= o.amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+
+<li><%= link_to "New cookie order", new_cookie_order_path(order_id: @order.id) %></li>
+
+<br>
+<br>
+
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>

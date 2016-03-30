@@ -1,0 +1,32 @@
+<% provide(:title, 'All orders') %>
+
+<h1>Orders</h1>
+<p>
+ 	
+ 	<h3>Active orders</h3>
+
+ 	<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Order number</th>
+      <th>Requested date</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |o| %>
+      <tr>
+        <td><%= o.id %></td>
+        <td><%= o.requested_delivery_date %></td>
+        <td><%= link_to 'Show', o %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+ 	<li><%= link_to "Place order", new_order_path %></li>
+
+
+</p>

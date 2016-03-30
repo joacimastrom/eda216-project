@@ -1,0 +1,20 @@
+<% provide(:title, 'Add cookie') %>
+<h1>Specify order</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@cookie_order) do |f| %>
+    
+    <%= f.label :cookie %>
+    <%= f.collection_select :cookie_id, Cookie.all, :id, :name, class: 'form-control' %>
+    <br>
+    <%= f.label :pallets%>
+    <%= f.number_field :amount, class: 'form-control' %>
+
+    <%= f.hidden_field :order_id, value: @order_id %>
+
+    <br>
+    <%= f.submit "Complete cookie order", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
