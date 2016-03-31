@@ -1,29 +1,35 @@
 <% provide(:title, 'All pallets') %>
 
-
-<h1>Listing pallets</h1>
-
-<table class="table table-striped">
+<h1>Pallets</h1>
+<p>
+  
+  <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Pallet number</th>
+      <th>Order ID</th>
+      <th>Product</th>
+      <th>Location</th>
+      <th>Production date</th>
+      <th>Blocked</th>
+
+
     </tr>
   </thead>
 
   <tbody>
-    <% @pallet.each do |c| %>
+    <% @pallets.each do |o| %>
       <tr>
-        <td><%= c.name %></td>
-        
-        <td><%= link_to 'Show', c %></td>
-        <td><%= link_to 'Edit', edit_cooky_path(c) %></td>
-        <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= o.id %></td>
+        <td><%= o.order_id %></td>
+        <td><%= Cookie.find_by(id: o.cookie_id).name %></td>
+        <td><%= o.location %></td>
+        <td><%= o.created_at.to_date %></td> 
+        <td><%= o.blocked ? "Yes" : "No" %></td>
+        <td><%= link_to 'Show', o %></td>
+        </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+</p>

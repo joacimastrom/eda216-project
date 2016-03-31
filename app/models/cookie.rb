@@ -13,6 +13,23 @@ class Cookie < ActiveRecord::Base
 	end
 
 
+	def sufficient?
+		@recipes = Recipe.where(cookie_id: id)
+		@recipes.each do | o | 
+			return false if o.quantity > Ingredient.find_by(id: o.ingredient_id).quantity
+		end
+
+		@recipes.each do | o |
+			i = Ingredient.find_by(id: o.ingredient_id)
+			i.update(quantity: i.quantity - o.quantity)
+		end
+
+		return true
+
+	end
+
+
+
 
 
 	private 

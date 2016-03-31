@@ -3,10 +3,6 @@
 
 <h1>All ingredients in store</h1>
 
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-    <br>
-<% end %>
 
 <table class="table table-striped">
   <thead>
@@ -26,14 +22,13 @@
         <td><%= i.quantity %></td>
         <td><%= i.updated_at.to_date %></td>
         <td><%= i.amount_delivered %></td>
+        <td>
         <%= form_for(i) do |f| %>
-
-          <td><%= f.number_field :amount_delivered, value: 0, class: 'form-control' %></td>
-
-          <td><%= f.submit "Restock", class: "btn btn-primary" %></td>
-        <% end %>
-      
-
+          <%= f.number_field :amount_delivered, value: 0, class: 'form-control' %>
+          <%= f.submit "Restock", class: "btn btn-primary" %>
+          <% end %>
+        </td>
+        
       </tr>
     <% end %>
   </tbody>

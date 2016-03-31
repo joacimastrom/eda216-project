@@ -4,18 +4,16 @@ class PalletsController < ApplicationController
 		@pallets = Pallet.all
 	end
 
-	def new
-		
-	end
-
-
-	def create
-
-	end
 
 	def edit
-
 	end
+
+
+	private
+
+	def pallet_params
+    	params.require(:pallet).permit(:cookie_id, :order_id)
+    end
 
 
 

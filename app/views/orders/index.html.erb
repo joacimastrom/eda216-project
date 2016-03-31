@@ -10,7 +10,6 @@
     <tr>
       <th>Order number</th>
       <th>Requested date</th>
-
     </tr>
   </thead>
 
@@ -20,6 +19,7 @@
         <td><%= o.id %></td>
         <td><%= o.requested_delivery_date %></td>
         <td><%= link_to 'Show', o %></td>
+       <!-- <td><%= button_to 'Produce', orders_check_storage_path(:order_id => o.id), method: :post %></td>-->
       </tr>
     <% end %>
   </tbody>

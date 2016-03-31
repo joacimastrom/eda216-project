@@ -16,7 +16,7 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   root_path %></li>
-            <li><%= link_to "Warehouse",  ingredients_path %></li>
+            <li><%= link_to "Storage",  storage_path %></li>
             <li><%= link_to "Recipes", cookies_path %></li>
             <li><%= link_to "Orders", orders_path %></li>
             <li><%= link_to "Pallets", pallets_path %></li>
@@ -24,6 +24,9 @@
         </nav>
       </div>
     </header>
+       <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
     <div class="container">
       <%= yield %>
     </div>

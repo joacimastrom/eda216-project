@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329181925) do
+ActiveRecord::Schema.define(version: 20160331133933) do
 
   create_table "cookie_orders", force: :cascade do |t|
     t.integer  "amount"
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 20160329181925) do
     t.boolean  "blocked"
     t.integer  "order_id"
     t.boolean  "delivered",        default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "cookie_id"
-    t.integer  "location"
+    t.string   "location",         default: "Freezer"
     t.date     "date_of_delivery"
   end
 

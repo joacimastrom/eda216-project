@@ -7,14 +7,18 @@ class IngredientsController < ApplicationController
 	end
 
 	def update
-		@amount = ingredient_params[:amount_delivered]
-		if @ingredient.update(amount_delivered: @amount, quantity: (@ingredient.quantity).to_i + (@amount).to_i)
-			flash[:notice] = "#{@ingredient.name} restocked with #{@amount} units"
+		amount = ingredient_params[:amount_delivered]
+		if @ingredient.update(amount_delivered: amount, quantity: (@ingredient.quantity).to_i + (amount).to_i)
+			flash[:notice] = "#{@ingredient.name} restocked with #{amount} units"
 	  	else
 	  		flash[:notice] = "Bad amount"
 		end
 		redirect_to :back
 	end
+
+	# CALLBACK!
+
+	# Turbolinks
 
 
 	private 
