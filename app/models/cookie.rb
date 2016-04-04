@@ -2,7 +2,6 @@ class Cookie < ActiveRecord::Base
 	has_many :recipes
 	has_many :pallets
 	has_many :cookie_orders
-	# before_save :downcase_name
 
 	
 	validates_presence_of :name

@@ -44,11 +44,9 @@
   <td>
  </td>
 </table>
-
 </p>
 <%= submit_tag "Block selected" %>
 <% end %>
-
 
 
 
@@ -64,10 +62,8 @@
       <th>Product</th>
       <th>Location</th>
       <th>Production date</th>
-
     </tr>
   </thead>
-
   <tbody>
     <% @pallets_blocked.each do |o| %>
       <tr>
@@ -81,7 +77,6 @@
     <% end %>
   </tbody>
 </table>
-
 </p>
 <td><%= submit_tag "Unblock selected" %></td>
 <% end %>

@@ -9,9 +9,9 @@ class IngredientsController < ApplicationController
 	def update
 		amount = ingredient_params[:amount_delivered]
 		if @ingredient.update(amount_delivered: amount)
-			flash[:notice] = "#{@ingredient.name} restocked with #{amount} units"
+			flash[:info] = "#{@ingredient.name} restocked with #{amount} units"
 	  	else
-	  		flash[:notice] = "Bad amount"
+	  		flash[:info] = "Bad amount"
 		end
 		redirect_to :back
 	end
