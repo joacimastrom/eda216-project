@@ -15,7 +15,6 @@
         <%= link_to "Krusty Cookies", root_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   root_path %></li>
             <li><%= link_to "Storage",  storage_path %></li>
             <li><%= link_to "Recipes", cookies_path %></li>
             <li><%= link_to "Orders", orders_path %></li>
@@ -30,5 +29,8 @@
     <div class="container">
       <%= yield %>
     </div>
+    <br>
+    <br>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

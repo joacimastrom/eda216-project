@@ -8,7 +8,7 @@ class IngredientsController < ApplicationController
 
 	def update
 		amount = ingredient_params[:amount_delivered]
-		if @ingredient.update(amount_delivered: amount, quantity: (@ingredient.quantity).to_i + (amount).to_i)
+		if @ingredient.update(amount_delivered: amount)
 			flash[:notice] = "#{@ingredient.name} restocked with #{amount} units"
 	  	else
 	  		flash[:notice] = "Bad amount"

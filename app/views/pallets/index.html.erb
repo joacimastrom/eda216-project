@@ -1,35 +1,90 @@
 <% provide(:title, 'All pallets') %>
 
 <h1>Pallets</h1>
-<p>
-  
+
+<%= form_tag pallets_path, :method => 'get' do %>
+
+<%= label_tag :from_date %>
+<%= date_field(:search, :from_date) %>
+
+<%= label_tag :to_date %>
+<%= date_field(:search, :to_date)%>
+
+<%= submit_tag "Search" %>
+<% end %>
+
+<%= @current_search %>
+
+<%= form_tag block_pallets_path, :method => :put do %>
+<p>  
   <table class="table table-striped">
   <thead>
     <tr>
+      <th>Select</th>
       <th>Pallet number</th>
       <th>Order ID</th>
       <th>Product</th>
       <th>Location</th>
       <th>Production date</th>
-      <th>Blocked</th>
-
-
     </tr>
   </thead>
-
   <tbody>
-    <% @pallets.each do |o| %>
+    
+    <% @pallets_ok.each do |o| %>
       <tr>
+        <td> <%= check_box_tag "pallet_ids[]", o.id %></td>
         <td><%= o.id %></td>
         <td><%= o.order_id %></td>
         <td><%= Cookie.find_by(id: o.cookie_id).name %></td>
         <td><%= o.location %></td>
         <td><%= o.created_at.to_date %></td> 
-        <td><%= o.blocked ? "Yes" : "No" %></td>
-        <td><%= link_to 'Show', o %></td>
+        </tr>
+    <% end %>
+  </tbody>
+  <td>
+ </td>
+</table>
+
+</p>
+<%= submit_tag "Block selected" %>
+<% end %>
+
+
+
+
+<h1> Blocked pallets</h1>
+<%= form_tag unblock_pallets_path, :method => :put do %>
+<p>  
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Select</th>
+      <th>Pallet number</th>
+      <th>Order ID</th>
+      <th>Product</th>
+      <th>Location</th>
+      <th>Production date</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pallets_blocked.each do |o| %>
+      <tr>
+        <td> <%= check_box_tag "pallet_ids[]", o.id %></td>
+        <td><%= o.id %></td>
+        <td><%= o.order_id %></td>
+        <td><%= Cookie.find_by(id: o.cookie_id).name %></td>
+        <td><%= o.location %></td>
+        <td><%= o.created_at.to_date %></td> 
         </tr>
     <% end %>
   </tbody>
 </table>
 
 </p>
+<td><%= submit_tag "Unblock selected" %></td>
+<% end %>
+
+
+

@@ -18,15 +18,15 @@
   <tbody>
     <% @ingredients.each do |i| %>
       <tr>
+        <%= form_for(i, layout: :horizontal) do |f| %>
         <td><%= i.name %></td>
         <td><%= i.quantity %></td>
         <td><%= i.updated_at.to_date %></td>
         <td><%= i.amount_delivered %></td>
-        <td>
-        <%= form_for(i) do |f| %>
-          <%= f.number_field :amount_delivered, value: 0, class: 'form-control' %>
-          <%= f.submit "Restock", class: "btn btn-primary" %>
-          <% end %>
+        <td><%= f.number_field :amount_delivered, value: 0, class: 'form-control' %></td>
+        <td><%= f.submit "Restock", class: "btn btn-primary" %></td>
+        <% end %>
+
         </td>
         
       </tr>

@@ -5,4 +5,5 @@ class Pallet < ActiveRecord::Base
 	validates_presence_of :order_id, :cookie_id
 
 
+
 end
