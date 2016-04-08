@@ -4,6 +4,9 @@
 
 <%= form_tag pallets_path, :method => 'get' do %>
 
+<%= collection_select(:search, :cookie_id, Cookie.all, :id, :name, {include_blank: true, value: ""}, class: "select2") %>
+
+
 <%= label_tag :from_date %>
 <%= date_field(:search, :from_date) %>
 
@@ -18,19 +21,19 @@
 <%= form_tag block_pallets_path, :method => :put do %>
 <p>  
   <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Select</th>
-      <th>Pallet number</th>
-      <th>Order ID</th>
-      <th>Product</th>
-      <th>Location</th>
-      <th>Production date</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <% @pallets_ok.each do |o| %>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Pallet number</th>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Location</th>
+        <th>Production date</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @pallets_ok.each do |o| %>
       <tr>
         <td> <%= check_box_tag "pallet_ids[]", o.id %></td>
         <td><%= o.id %></td>
@@ -38,12 +41,12 @@
         <td><%= Cookie.find_by(id: o.cookie_id).name %></td>
         <td><%= o.location %></td>
         <td><%= o.created_at.to_date %></td> 
-        </tr>
-    <% end %>
-  </tbody>
-  <td>
- </td>
-</table>
+      </tr>
+      <% end %>
+    </tbody>
+    <td>
+    </td>
+  </table>
 </p>
 <%= submit_tag "Block selected" %>
 <% end %>
@@ -54,18 +57,18 @@
 <%= form_tag unblock_pallets_path, :method => :put do %>
 <p>  
   <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Select</th>
-      <th>Pallet number</th>
-      <th>Order ID</th>
-      <th>Product</th>
-      <th>Location</th>
-      <th>Production date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pallets_blocked.each do |o| %>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Pallet number</th>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Location</th>
+        <th>Production date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pallets_blocked.each do |o| %>
       <tr>
         <td> <%= check_box_tag "pallet_ids[]", o.id %></td>
         <td><%= o.id %></td>
@@ -73,10 +76,10 @@
         <td><%= Cookie.find_by(id: o.cookie_id).name %></td>
         <td><%= o.location %></td>
         <td><%= o.created_at.to_date %></td> 
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 <td><%= submit_tag "Unblock selected" %></td>
 <% end %>

@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
 
 
 	def index
-		@ingredients = Ingredient.all.sort_by { |i| i.name }
+		@ingredients = Ingredient.order(:name)
 	end
 
 	def update
