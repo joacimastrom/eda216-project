@@ -2,8 +2,15 @@ class OrdersController < ApplicationController
 	before_action :set_order, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@orders = Order.all
-	end
+
+
+    if params[:search].nil?
+		  @orders = Order.all.order(:requested_delivery_date)
+    else
+      search_orders
+    end
+
+  end
 
 	def new
 		@order = Order.new
@@ -66,5 +73,16 @@ class OrdersController < ApplicationController
     def set_order
       @order = Order.find(params[:id])
     end
+
+
+
+  def search_orders
+      from = params[:search][:from_date]
+      from = Date.new(2010) if from.blank?
+      to = params[:search][:to_date]
+      to = Date.new(2100)   if to.blank?
+      @orders = Order.where(requested_delivery_date: from.to_date..to.to_date)
+      flash[:info] = "Showing orders from #{from} to #{to}, total #{@orders.size}"
+  end
 
 end

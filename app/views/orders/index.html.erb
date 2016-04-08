@@ -2,6 +2,17 @@
 
 <h1>Orders</h1>
 <p>
+
+<%= form_tag orders_path, :method => 'get' do %>
+
+<%= label_tag :from_date %>
+<%= date_field(:search, :from_date) %>
+
+<%= label_tag :to_date %>
+<%= date_field(:search, :to_date)%>
+
+<%= submit_tag "Search" %>
+<% end %>
  	
  	<h3>Active orders</h3>
 
@@ -9,7 +20,9 @@
   <thead>
     <tr>
       <th>Order number</th>
-      <th>Requested date</th>
+      <th>Customer</th>
+      <th>Adress</th>
+      <th>Requested delivery</th>
     </tr>
   </thead>
 
@@ -17,6 +30,9 @@
     <% @orders.each do |o| %>
       <tr>
         <td><%= o.id %></td>
+        <% customer = Customer.find(o.customer_id) %>
+        <td><%= customer.name %></td>
+        <td><%= customer.adress %></td>
         <td><%= o.requested_delivery_date %></td>
         <td><%= link_to 'Show', o %></td>
       </tr>

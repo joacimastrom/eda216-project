@@ -35,7 +35,7 @@ class PalletsController < ApplicationController
 	    from = Date.new(2010) if from.blank?
 	    to = params[:search][:to_date]
 	    to = Date.new(2100)   if to.blank?
-	    pallets = pallets.where(:created_at => from.to_date..to.to_date)
+	    pallets = pallets.where(created_at: from.to_date..to.to_date)
 	    @pallets_ok = pallets.where(blocked: false).sort_by { |p| p.created_at }.reverse
 	    @pallets_blocked = pallets.where(blocked: true).sort_by { |p| p.created_at }.reverse
 	    flash[:info] = "Showing pallets from #{from} to #{to}, total #{pallets.size}"
