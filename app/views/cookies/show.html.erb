@@ -18,9 +18,6 @@
       <tr>
         <td><%= (@ingredients.find_by(id: r.ingredient_id)).name %></td>
         <td><%= r.quantity %></td>  
-
-        <td><%= link_to 'Edit', edit_recipe_path(r) %></td>
-        <td><%= link_to 'Remove', r, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
