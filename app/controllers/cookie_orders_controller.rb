@@ -10,9 +10,10 @@ class CookieOrdersController < ApplicationController
   	@cookie_order = CookieOrder.new(order_params)
   	if @cookie_order.save
       	flash[:notice] = "Cookie added"
-      	redirect_to order_url(Order.find_by id: @cookie_order.order_id)
+      	redirect_to order_url(@cookie_order.order_id)
  		else
-    		render 'new'
+        flash[:info] = "Bad amount, try again"
+    		redirect_to order_url(@cookie_order.order_id)
  		end
   end
 
